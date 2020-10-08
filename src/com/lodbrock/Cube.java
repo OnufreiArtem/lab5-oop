@@ -1,7 +1,5 @@
 package com.lodbrock;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
-
 
 /**
  * This class represent the cube.
@@ -16,9 +14,9 @@ public class Cube {
     public Cube() {
     }
 
-    public Cube(double sideLength) throws InvalidArgumentException {
+    public Cube(double sideLength) throws IllegalArgumentException {
         if(sideLength < 0)
-            throw new InvalidArgumentException(new String[]{"The length of the side cannot be less than zero"});
+            throw new IllegalArgumentException("The length of the side cannot be less than zero");
         this.setSideLength(sideLength);
     }
 
@@ -49,9 +47,9 @@ public class Cube {
         return sideLength;
     }
 
-    public void setSideLength(double sideLength) throws InvalidArgumentException {
+    public void setSideLength(double sideLength) throws IllegalArgumentException {
         if(sideLength < 0)
-            throw new InvalidArgumentException(new String[]{"The length of the side cannot be less than zero"});
+            throw new IllegalArgumentException("The length of the side cannot be less than zero");
         this.sideLength = sideLength;
     }
 }
