@@ -9,47 +9,55 @@ package com.lodbrock;
  */
 
 public class Cube {
-    private double sideLength;
+    private double sideLength = -1;
 
     public Cube() {
     }
 
-    public Cube(double sideLength) throws IllegalArgumentException {
-        if(sideLength < 0)
-            throw new IllegalArgumentException("The length of the side cannot be less than zero");
+    public Cube(double sideLength) throws Exception {
         this.setSideLength(sideLength);
     }
 
+    public Cube(double diagonal, boolean isDiagonal) throws Exception{
+        if(diagonal < 0)
+            throw new Exception("The length of the diagonal cannot be less than zero");
+        if (isDiagonal)
+            this.setSideLength(Math.sqrt(diagonal/Math.sqrt(2)));
+        else
+            this.setSideLength(diagonal);
+    }
 
-    public double getOneSideArea(){
+    public double getOneSideArea() throws Exception{
         return Math.pow(getSideLength(), 2);
     }
 
-    public double getSideArea(){
+    public double getSideArea() throws Exception{
         return getOneSideArea() * 6;
     }
 
-    public double getVolume(){
+    public double getVolume() throws Exception{
         return Math.pow(getSideLength(), 3);
     }
 
-    public double getOneSideDiagonal(){
+    public double getOneSideDiagonal() throws Exception{
         return getSideLength() * Math.sqrt(2);
     }
 
-    public double getDiagonal(){
+    public double getDiagonal() throws Exception {
         double squareOneSideDiagonal = Math.pow(this.getOneSideDiagonal(), 2);
         double squareSideLength = Math.pow(this.getSideLength(), 2);
         return  Math.sqrt(squareOneSideDiagonal + squareSideLength);
     }
 
-    public double getSideLength() {
+    public double getSideLength() throws Exception {
+        if (sideLength < 0)
+            throw new Exception("You need to initialize cube before using it");
         return sideLength;
     }
 
-    public void setSideLength(double sideLength) throws IllegalArgumentException {
+    public void setSideLength(double sideLength) throws Exception{
         if(sideLength < 0)
-            throw new IllegalArgumentException("The length of the side cannot be less than zero");
+            throw new Exception("The length of the side cannot be less than zero");
         this.sideLength = sideLength;
     }
 }
